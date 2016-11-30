@@ -29,6 +29,18 @@ public class WeatherService {
         call.enqueue(callback);
     }
 
+    public static void getFutureWeather(String id, Callback callback){
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.API_FORECAST_URL).newBuilder();
+        urlBuilder.addQueryParameter(Constants.ID_QUERY_PARAMTER, id);
+        urlBuilder.addQueryParameter(Constants.API_KEY_QUERY_PARAMETER, Constants.API_KEY);
+        urlBuilder.addQueryParameter("cnt", "7");
+        String url = urlBuilder.build().toString();
+        Request request = new Request.Builder().url(url).build();
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+    }
+
     public Forecast processCurrentResults(Response response) {
         Forecast forecast = null;
 

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +31,9 @@ public class ForecastActivity extends AppCompatActivity {
     @Bind(R.id.textView_minmax) TextView mTextViewMinMax;
     @Bind(R.id.textView_humidity) TextView mTextViewHumidity;
     @Bind(R.id.textView_description) TextView mTextViewDescription;
+    @Bind(R.id.button_daily) Button mButtonDaily;
     private Forecast mCurrentForecast;
+    private int mPlaceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,14 @@ public class ForecastActivity extends AppCompatActivity {
         String zippy = intent.getStringExtra("zippy");
         mTextViewZippy.setText(intent.getStringExtra("zippy"));
         getForecast(zippy);
+        mButtonDaily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newIntent = new Intent(ForecastActivity.this, DailyForecastActivity.class);
+                newIntent.putExtra("placeId", mPlaceId);
+                startActivity(newIntent);
+            }
+        });
     }
 
     private void getForecast(String zippy){
@@ -58,6 +70,7 @@ public class ForecastActivity extends AppCompatActivity {
                 ForecastActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        mPlaceId = mCurrentForecast.getId();
                         mTextViewHeading.setText(mCurrentForecast.getPlaceName());
                         String imageUrl = "http://openweathermap.org/img/w/" + mCurrentForecast.getIcon()+".png";
                         Log.i(TAG, "run: " + imageUrl);
