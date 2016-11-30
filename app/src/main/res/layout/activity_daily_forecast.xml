@@ -20,7 +20,8 @@
         android:gravity="center_horizontal"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        android:textAllCaps="true"/>
+        android:textAllCaps="true"
+        android:textAlignment="center"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

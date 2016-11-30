@@ -14,7 +14,8 @@
         android:id="@+id/textView_zippy"
         android:layout_below="@+id/textView_heading"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"/>
 
     <TextView
         android:layout_width="wrap_content"

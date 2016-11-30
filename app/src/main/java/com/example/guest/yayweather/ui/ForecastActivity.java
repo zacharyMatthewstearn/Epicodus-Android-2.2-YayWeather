@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guest.yayweather.R;
 import com.example.guest.yayweather.models.Forecast;
@@ -66,17 +67,24 @@ public class ForecastActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 mCurrentForecast =  weatherService.processCurrentResults(response);
+
                 ForecastActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mPlaceId = mCurrentForecast.mId;
-                        mTextViewHeading.setText(mCurrentForecast.mPlaceName);
-                        String imageUrl = "http://openweathermap.org/img/w/" + mCurrentForecast.mIcon+".png";
-                        Picasso.with(ForecastActivity.this).load(imageUrl).resize(200, 200).error(R.drawable.angel).into(mImageViewIcon);
-                        mTextViewTemp.setText(mCurrentForecast.mTemp + "°");
-                        mTextViewMinMax.setText(mCurrentForecast.mMinTemp + "°/" + mCurrentForecast.mMaxTemp + "°");
-                        mTextViewHumidity.setText("humidity: " + mCurrentForecast.mHumidity + "%");
-                        mTextViewDescription.setText(mCurrentForecast.mDescription);
+                        if(mCurrentForecast == null){
+                            Toast.makeText(ForecastActivity.this, "OMG?!? THAT NOT PLACE?", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ForecastActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }else {
+                            mPlaceId = mCurrentForecast.mId;
+                            mTextViewHeading.setText(mCurrentForecast.mPlaceName);
+                            String imageUrl = "http://openweathermap.org/img/w/" + mCurrentForecast.mIcon + ".png";
+                            Picasso.with(ForecastActivity.this).load(imageUrl).resize(200, 200).error(R.drawable.angel).into(mImageViewIcon);
+                            mTextViewTemp.setText(mCurrentForecast.mTemp + "°");
+                            mTextViewMinMax.setText(mCurrentForecast.mMinTemp + "°/" + mCurrentForecast.mMaxTemp + "°");
+                            mTextViewHumidity.setText("humidity: " + mCurrentForecast.mHumidity + "%");
+                            mTextViewDescription.setText(mCurrentForecast.mDescription);
+                        }
                     }
                 });
             }
