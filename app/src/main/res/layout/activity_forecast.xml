@@ -15,7 +15,7 @@
         android:layout_below="@+id/textView_heading"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorPrimaryDark"
-        android:textAlignment="center"/>
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,7 +26,8 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="50sp"
-        android:layout_marginTop="30sp" />
+        android:layout_marginTop="30sp"
+        android:textAlignment="center"/>
 
     <TextView
         android:layout_width="wrap_content"
