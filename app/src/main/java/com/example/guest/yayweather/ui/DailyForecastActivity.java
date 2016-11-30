@@ -3,7 +3,7 @@ package com.example.guest.yayweather.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
@@ -56,7 +56,7 @@ public class DailyForecastActivity extends AppCompatActivity {
                         mTextViewLocation.setText(mForecasts.get(0).getPlaceName());
                         mAdapter = new ForecastListAdapter(getApplicationContext(),mForecasts);
                         mRecyclerViewItsTheOnlyOne.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(DailyForecastActivity.this);
+                        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(DailyForecastActivity.this, 2);
                         mRecyclerViewItsTheOnlyOne.setLayoutManager(layoutManager);
                         mRecyclerViewItsTheOnlyOne.setHasFixedSize(true);
                     }

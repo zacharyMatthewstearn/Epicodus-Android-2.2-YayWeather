@@ -36,7 +36,8 @@ public class WeatherService {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.API_FORECAST_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.ID_QUERY_PARAMTER, id);
         urlBuilder.addQueryParameter(Constants.API_KEY_QUERY_PARAMETER, Constants.API_KEY);
-        urlBuilder.addQueryParameter("cnt", "7");
+        urlBuilder.addQueryParameter("units", "imperial");
+        urlBuilder.addQueryParameter("cnt", "8");
         String url = urlBuilder.build().toString();
         Request request = new Request.Builder().url(url).build();
         Call call = client.newCall(request);
@@ -54,10 +55,10 @@ public class WeatherService {
                 String placeName = forecastJSON.getString("name");
                 int id = forecastJSON.getInt("id");
                 String icon = forecastJSON.getJSONArray("weather").getJSONObject(0).getString("icon");
-                double temp = forecastJSON.getJSONObject("main").getDouble("temp");
+                int temp = forecastJSON.getJSONObject("main").getInt("temp");
                 String description = forecastJSON.getJSONArray("weather").getJSONObject(0).getString("description");
-                double minTemp = forecastJSON.getJSONObject("main").getDouble("temp_min");
-                double maxTemp = forecastJSON.getJSONObject("main").getDouble("temp_max");
+                int minTemp = forecastJSON.getJSONObject("main").getInt("temp_min");
+                int maxTemp = forecastJSON.getJSONObject("main").getInt("temp_max");
                 int humidity = forecastJSON.getJSONObject("main").getInt("humidity");
 
                 forecast = new Forecast(placeName, id, temp, icon, description, humidity, minTemp, maxTemp);
@@ -83,10 +84,11 @@ public class WeatherService {
                     String placeName = forecastJSON.getJSONObject("city").getString("name");
                     String icon = thisForecast.getJSONArray("weather").getJSONObject(0).getString("icon");
                     String description = thisForecast.getJSONArray("weather").getJSONObject(0).getString("description");
-                    double minTemp = thisForecast.getJSONObject("temp").getDouble("min");
-                    double maxTemp = thisForecast.getJSONObject("temp").getDouble("max");
+                    int minTemp = thisForecast.getJSONObject("temp").getInt("min");
+                    int maxTemp = thisForecast.getJSONObject("temp").getInt("max");
                     int humidity = thisForecast.getInt("humidity");
-                    Forecast newForecast = new Forecast(placeName, icon, description, humidity, minTemp, maxTemp);
+                    long date = thisForecast.getLong("dt");
+                    Forecast newForecast = new Forecast(placeName, icon, description, humidity, minTemp, maxTemp, date);
                     forecasts.add(newForecast);
                 }
             }

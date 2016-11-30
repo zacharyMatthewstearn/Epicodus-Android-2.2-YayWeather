@@ -21,20 +21,22 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textView_heading"
-        style="@style/Base.TextAppearance.AppCompat.Display2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="50sp"
+        android:layout_marginTop="30sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textView_description"
-        style="@style/Base.TextAppearance.AppCompat.Display1"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView_humidity"
         android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        android:textAlignment="center"
         />
 
     <ImageView
@@ -49,30 +51,30 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textView_temp"
-        style="@style/Base.TextAppearance.AppCompat.Display2"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/textView_minmax"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:textSize="45sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textView_minmax"
-        style="@style/Base.TextAppearance.AppCompat.Display1"
-        android:layout_below="@+id/textView_temp"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:textSize="40sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textView_humidity"
-        style="@style/Base.TextAppearance.AppCompat.Display1"
         android:layout_below="@+id/textView_minmax"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"/>
 
     <ImageView
         android:layout_width="wrap_content"

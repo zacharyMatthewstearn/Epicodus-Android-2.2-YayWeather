@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by Guest on 11/29/16.
- */
 public class ForecastListAdapter extends RecyclerView.Adapter<ForecastListAdapter.ForecastViewHolder>{
     private ArrayList<Forecast> mForecasts = new ArrayList<>();
     private Context mContext;
@@ -47,11 +44,12 @@ public class ForecastListAdapter extends RecyclerView.Adapter<ForecastListAdapte
     }
 
     public class ForecastViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.iconImageView)
-        ImageView mIconImageView;
-        @Bind(R.id.descriptionTextView)
-        TextView mDescriptionTextView;
+        @Bind(R.id.iconImageView) ImageView mIconImageView;
+        @Bind(R.id.descriptionTextView) TextView mDescriptionTextView;
         @Bind(R.id.tempTextView) TextView mTempTextView;
+        @Bind(R.id.dateTextView) TextView mTextViewDate;
+        @Bind(R.id.dayTextView) TextView mTextViewDay;
+        @Bind(R.id.humidityTextView) TextView mTextViewHumidity;
         private Context mContext;
 
         public ForecastViewHolder(View itemView) {
@@ -60,11 +58,14 @@ public class ForecastListAdapter extends RecyclerView.Adapter<ForecastListAdapte
             mContext = itemView.getContext();
         }
 
-        public void bindForecast(Forecast forecast){
+        public void bindForecast(Forecast forecast) {
             String imageUrl = "http://openweathermap.org/img/w/" + forecast.getIcon()+".png";
-            Picasso.with(mContext).load(imageUrl).into(mIconImageView);
+            Picasso.with(mContext).load(imageUrl).resize(128, 128).into(mIconImageView);
+            mTextViewDate.setText(forecast.formatDate("MMM d"));
+            mTextViewDay.setText(forecast.formatDate("EEE"));
             mDescriptionTextView.setText(forecast.getDescription());
-            mTempTextView.setText("Temp: " + forecast.getMinTemp() + "/" + forecast.getMaxTemp());
+            mTempTextView.setText(forecast.getMinTemp() + "°/" + forecast.getMaxTemp() + "°");
+            mTextViewHumidity.setText("Humidity: " + forecast.getHumidity() + "%");
         }
     }
 }

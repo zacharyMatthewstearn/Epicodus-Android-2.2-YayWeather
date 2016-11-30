@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.guest.yayweather.ui.DailyForecastActivity">
+    tools:context="com.example.guest.yayweather.ui.DailyForecastActivity"
+    android:background="@color/colorPrimaryLight">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,13 +15,18 @@
         android:layout_centerHorizontal="true"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
-        android:textSize="25dp"
-        android:gravity="center_horizontal" />
+        android:layout_marginTop="20dp"
+        android:textSize="50dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textAllCaps="true"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"
-        android:layout_below="@+id/locationTextView"/>
+        android:layout_below="@+id/locationTextView"
+        android:padding="5dp"/>
 
 </RelativeLayout>

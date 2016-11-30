@@ -1,19 +1,22 @@
 package com.example.guest.yayweather.models;
 
-/**
- * Created by Guest on 11/29/16.
- */
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Forecast {
     private String mPlaceName;
     private int mId;
-    private double mTemp;
+    private int mTemp;
     private String mIcon;
     private String mDescription;
     private int mHumidity;
-    private double mMinTemp;
-    private double mMaxTemp;
+    private int mMinTemp;
+    private int mMaxTemp;
+    private long mDate;
 
-    public Forecast(String placeName, int id, double temp, String icon, String description, int humidity, double minTemp, double maxTemp) {
+    public Forecast(String placeName, int id, int temp, String icon, String description, int humidity, int minTemp, int maxTemp) {
         mPlaceName = placeName;
         mId = id;
         mTemp = temp;
@@ -24,13 +27,14 @@ public class Forecast {
         mMaxTemp = maxTemp;
     }
 
-    public Forecast(String placeName, String icon, String description, int humidity, double minTemp, double maxTemp) {
+    public Forecast(String placeName, String icon, String description, int humidity, int minTemp, int maxTemp, long date) {
         mIcon = icon;
         mPlaceName = placeName;
         mDescription = description;
         mHumidity = humidity;
         mMinTemp = minTemp;
         mMaxTemp = maxTemp;
+        mDate = date;
     }
 
     public String getPlaceName() {
@@ -49,11 +53,11 @@ public class Forecast {
         mId = id;
     }
 
-    public double getTemp() {
+    public int getTemp() {
         return mTemp;
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(int temp) {
         mTemp = temp;
     }
 
@@ -81,19 +85,34 @@ public class Forecast {
         mHumidity = humidity;
     }
 
-    public double getMinTemp() {
+    public int getMinTemp() {
         return mMinTemp;
     }
 
-    public void setMinTemp(double minTemp) {
+    public void setMinTemp(int minTemp) {
         mMinTemp = minTemp;
     }
 
-    public double getMaxTemp() {
+    public int getMaxTemp() {
         return mMaxTemp;
     }
 
-    public void setMaxTemp(double maxTemp) {
+    public void setMaxTemp(int maxTemp) {
         mMaxTemp = maxTemp;
+    }
+
+
+    public long getDate() {
+        return mDate;
+    }
+
+    public void setDate(int mDate) {
+        this.mDate = mDate;
+    }
+
+    public String formatDate(String format) {
+        DateFormat df = new SimpleDateFormat(format, Locale.getDefault());
+        Date newDate = new Date(mDate * 1000); // MAYBE THIS IS SECONDS AND IT NEEDS MILLIS?!?!?!?!??!!??!?!?!
+        return df.format(newDate);
     }
 }
