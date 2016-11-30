@@ -3,7 +3,6 @@ package com.example.guest.yayweather.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -70,15 +69,14 @@ public class ForecastActivity extends AppCompatActivity {
                 ForecastActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mPlaceId = mCurrentForecast.getId();
-                        mTextViewHeading.setText(mCurrentForecast.getPlaceName());
-                        String imageUrl = "http://openweathermap.org/img/w/" + mCurrentForecast.getIcon()+".png";
-                        Log.i(TAG, "run: " + imageUrl);
+                        mPlaceId = mCurrentForecast.mId;
+                        mTextViewHeading.setText(mCurrentForecast.mPlaceName);
+                        String imageUrl = "http://openweathermap.org/img/w/" + mCurrentForecast.mIcon+".png";
                         Picasso.with(ForecastActivity.this).load(imageUrl).resize(200, 200).error(R.drawable.angel).into(mImageViewIcon);
-                        mTextViewTemp.setText(mCurrentForecast.getTemp() + "°");
-                        mTextViewMinMax.setText(mCurrentForecast.getMinTemp() + "°/" + mCurrentForecast.getMaxTemp() + "°");
-                        mTextViewHumidity.setText("humidity: " + mCurrentForecast.getHumidity() + "%");
-                        mTextViewDescription.setText(mCurrentForecast.getDescription());
+                        mTextViewTemp.setText(mCurrentForecast.mTemp + "°");
+                        mTextViewMinMax.setText(mCurrentForecast.mMinTemp + "°/" + mCurrentForecast.mMaxTemp + "°");
+                        mTextViewHumidity.setText("humidity: " + mCurrentForecast.mHumidity + "%");
+                        mTextViewDescription.setText(mCurrentForecast.mDescription);
                     }
                 });
             }

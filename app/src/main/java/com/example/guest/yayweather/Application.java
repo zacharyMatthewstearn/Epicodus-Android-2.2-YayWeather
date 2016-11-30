@@ -9,5 +9,6 @@ public final class Application extends android.app.Application {
         super.onCreate();
         FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/PWChristmasfont.ttf");
         FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/PWChristmasfont.ttf");
+        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/PWChristmasfont.ttf");
     }
 }

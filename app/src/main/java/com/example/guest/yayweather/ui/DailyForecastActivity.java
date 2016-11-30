@@ -53,7 +53,7 @@ public class DailyForecastActivity extends AppCompatActivity {
                 DailyForecastActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mTextViewLocation.setText(mForecasts.get(0).getPlaceName());
+                        mTextViewLocation.setText(mForecasts.get(0).mPlaceName);
                         mAdapter = new ForecastListAdapter(getApplicationContext(),mForecasts);
                         mRecyclerViewItsTheOnlyOne.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(DailyForecastActivity.this, 2);

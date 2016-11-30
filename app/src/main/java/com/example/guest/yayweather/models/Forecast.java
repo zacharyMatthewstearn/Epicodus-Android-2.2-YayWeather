@@ -1,20 +1,27 @@
 package com.example.guest.yayweather.models;
 
+import org.parceler.Parcel;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+@Parcel
 public class Forecast {
-    private String mPlaceName;
-    private int mId;
-    private int mTemp;
-    private String mIcon;
-    private String mDescription;
-    private int mHumidity;
-    private int mMinTemp;
-    private int mMaxTemp;
-    private long mDate;
+    public String mPlaceName;
+    public int mId;
+    public int mTemp;
+    public String mIcon;
+    public String mDescription;
+    public int mHumidity;
+    public int mMinTemp;
+    public int mMaxTemp;
+    public long mDate;
+
+    public Forecast() {
+
+    }
 
     public Forecast(String placeName, int id, int temp, String icon, String description, int humidity, int minTemp, int maxTemp) {
         mPlaceName = placeName;
@@ -35,79 +42,6 @@ public class Forecast {
         mMinTemp = minTemp;
         mMaxTemp = maxTemp;
         mDate = date;
-    }
-
-    public String getPlaceName() {
-        return mPlaceName;
-    }
-
-    public void setPlaceName(String placeName) {
-        mPlaceName = placeName;
-    }
-
-    public int getId() {
-        return mId;
-    }
-
-    public void setId(int id) {
-        mId = id;
-    }
-
-    public int getTemp() {
-        return mTemp;
-    }
-
-    public void setTemp(int temp) {
-        mTemp = temp;
-    }
-
-    public String getIcon() {
-        return mIcon;
-    }
-
-    public void setIcon(String icon) {
-        mIcon = icon;
-    }
-
-    public String getDescription() {
-        return mDescription;
-    }
-
-    public void setDescription(String description) {
-        mDescription = description;
-    }
-
-    public int getHumidity() {
-        return mHumidity;
-    }
-
-    public void setHumidity(int humidity) {
-        mHumidity = humidity;
-    }
-
-    public int getMinTemp() {
-        return mMinTemp;
-    }
-
-    public void setMinTemp(int minTemp) {
-        mMinTemp = minTemp;
-    }
-
-    public int getMaxTemp() {
-        return mMaxTemp;
-    }
-
-    public void setMaxTemp(int maxTemp) {
-        mMaxTemp = maxTemp;
-    }
-
-
-    public long getDate() {
-        return mDate;
-    }
-
-    public void setDate(int mDate) {
-        this.mDate = mDate;
     }
 
     public String formatDate(String format) {
