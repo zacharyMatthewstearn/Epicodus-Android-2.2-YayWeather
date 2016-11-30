@@ -3,10 +3,12 @@ package com.example.guest.yayweather.services;
 import com.example.guest.yayweather.Constants;
 import com.example.guest.yayweather.models.Forecast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -68,4 +70,31 @@ public class WeatherService {
         return forecast;
     }
 
+    public ArrayList<Forecast> processFutureResults(Response response) {
+        ArrayList<Forecast> forecasts = new ArrayList<Forecast>();
+
+        try {
+            String jsonData = response.body().string();
+            if(response.isSuccessful()) {
+                JSONObject forecastJSON = new JSONObject(jsonData);
+                JSONArray forecastArray = forecastJSON.getJSONArray("list");
+                for(int i = 0; i < forecastArray.length(); i++) {
+                    JSONObject thisForecast = forecastArray.getJSONObject(i);
+                    String placeName = forecastJSON.getJSONObject("city").getString("name");
+                    String icon = thisForecast.getJSONArray("weather").getJSONObject(0).getString("icon");
+                    String description = thisForecast.getJSONArray("weather").getJSONObject(0).getString("description");
+                    double minTemp = thisForecast.getJSONObject("temp").getDouble("min");
+                    double maxTemp = thisForecast.getJSONObject("temp").getDouble("max");
+                    int humidity = thisForecast.getInt("humidity");
+                    Forecast newForecast = new Forecast(placeName, icon, description, humidity, minTemp, maxTemp);
+                    forecasts.add(newForecast);
+                }
+            }
+        }
+        catch(IOException | JSONException e) {
+            e.printStackTrace();
+        }
+
+        return forecasts;
+    }
 }

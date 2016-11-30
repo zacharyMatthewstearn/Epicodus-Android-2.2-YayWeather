@@ -24,8 +24,9 @@ public class Forecast {
         mMaxTemp = maxTemp;
     }
 
-    public Forecast(String icon, String description, int humidity, double minTemp, double maxTemp) {
+    public Forecast(String placeName, String icon, String description, int humidity, double minTemp, double maxTemp) {
         mIcon = icon;
+        mPlaceName = placeName;
         mDescription = description;
         mHumidity = humidity;
         mMinTemp = minTemp;
