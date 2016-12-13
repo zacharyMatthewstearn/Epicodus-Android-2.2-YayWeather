@@ -1,6 +1,6 @@
 # Yay Weather!
 
-#### Android Weather App for Epicodus, 11/18/2016
+#### Android Weather App for Epicodus
 
 #### By [**Zachary Matthewstearn**](https://github.com/zacharyMatthewstearn)
 
